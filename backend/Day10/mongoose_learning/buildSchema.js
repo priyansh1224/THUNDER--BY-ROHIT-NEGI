@@ -13,7 +13,9 @@ const userSchema = new mongoose.Schema({
    },
    accountNumber:{
     type: Number,
-    required: true
+    required: true,
+    unique: true,
+    index: true,
    },
    city:{
         type: String,
@@ -33,11 +35,13 @@ const userSchema = new mongoose.Schema({
    },
    accountType:{
     type:String,
-    require: true
+    require: true,
+    enum: ["current","saving"],
+    default: "saving"
    }
 },{timestamps:true});
 
 
 const Customer = mongoose.model("Customer",userSchema);
-
+// customers : collection build hojayega
 export default Customer;
